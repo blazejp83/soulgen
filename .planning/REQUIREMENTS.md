@@ -181,38 +181,38 @@ Which phases cover which requirements. Updated by create-roadmap.
 | MODE-04 | Phase 1 | Complete |
 | PERS-01 | Phase 1 | Complete |
 | PERS-02 | Phase 1 | Complete |
-| WIZD-01 | Phase 2 | Pending |
-| WIZD-02 | Phase 2 | Pending |
-| WIZD-03 | Phase 2 | Pending |
-| WIZD-04 | Phase 2 | Pending |
-| ARCH-01 | Phase 2 | Pending |
-| ARCH-02 | Phase 2 | Pending |
-| ARCH-03 | Phase 2 | Pending |
-| ARCH-04 | Phase 2 | Pending |
-| ARCH-05 | Phase 2 | Pending |
-| ARCH-06 | Phase 2 | Pending |
-| TEMP-01 | Phase 2 | Pending |
-| TEMP-02 | Phase 2 | Pending |
-| TEMP-03 | Phase 2 | Pending |
-| TEMP-04 | Phase 2 | Pending |
-| TEMP-05 | Phase 2 | Pending |
-| COMM-01 | Phase 2 | Pending |
-| COMM-02 | Phase 2 | Pending |
-| COMM-03 | Phase 2 | Pending |
-| COMM-04 | Phase 2 | Pending |
-| COMM-05 | Phase 2 | Pending |
-| COMM-06 | Phase 2 | Pending |
-| WORK-01 | Phase 2 | Pending |
-| WORK-02 | Phase 2 | Pending |
-| WORK-03 | Phase 2 | Pending |
-| WORK-04 | Phase 2 | Pending |
-| USER-01 | Phase 2 | Pending |
-| USER-02 | Phase 2 | Pending |
-| USER-03 | Phase 2 | Pending |
-| USER-04 | Phase 2 | Pending |
-| DOMN-01 | Phase 2 | Pending |
-| DOMN-02 | Phase 2 | Pending |
-| DOMN-03 | Phase 2 | Pending |
+| WIZD-01 | Phase 2 | Complete |
+| WIZD-02 | Phase 2 | Complete |
+| WIZD-03 | Phase 2 | Complete |
+| WIZD-04 | Phase 2 | Complete |
+| ARCH-01 | Phase 2 | Complete |
+| ARCH-02 | Phase 2 | Complete |
+| ARCH-03 | Phase 2 | Complete |
+| ARCH-04 | Phase 2 | Complete |
+| ARCH-05 | Phase 2 | Complete |
+| ARCH-06 | Phase 2 | Complete |
+| TEMP-01 | Phase 2 | Complete |
+| TEMP-02 | Phase 2 | Complete |
+| TEMP-03 | Phase 2 | Complete |
+| TEMP-04 | Phase 2 | Complete |
+| TEMP-05 | Phase 2 | Complete |
+| COMM-01 | Phase 2 | Complete |
+| COMM-02 | Phase 2 | Complete |
+| COMM-03 | Phase 2 | Complete |
+| COMM-04 | Phase 2 | Complete |
+| COMM-05 | Phase 2 | Complete |
+| COMM-06 | Phase 2 | Complete |
+| WORK-01 | Phase 2 | Complete |
+| WORK-02 | Phase 2 | Complete |
+| WORK-03 | Phase 2 | Complete |
+| WORK-04 | Phase 2 | Complete |
+| USER-01 | Phase 2 | Complete |
+| USER-02 | Phase 2 | Complete |
+| USER-03 | Phase 2 | Complete |
+| USER-04 | Phase 2 | Complete |
+| DOMN-01 | Phase 2 | Complete |
+| DOMN-02 | Phase 2 | Complete |
+| DOMN-03 | Phase 2 | Complete |
 | GENR-01 | Phase 3 | Pending |
 | GENR-02 | Phase 3 | Pending |
 | GENR-03 | Phase 3 | Pending |
@@ -238,4 +238,4 @@ Which phases cover which requirements. Updated by create-roadmap.
 
 ---
 *Requirements defined: 2026-02-05*
-*Last updated: 2026-02-05 after roadmap creation*
+*Last updated: 2026-02-05 after Phase 2 execution*

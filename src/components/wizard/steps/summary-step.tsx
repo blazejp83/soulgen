@@ -3,9 +3,12 @@
 import { useWizardStore } from "@/stores/wizard-store";
 import { useSettingsStore } from "@/stores/settings-store";
 import { useMounted } from "@/hooks/use-mounted";
+import { useGeneration } from "@/hooks/use-generation";
 import { ARCHETYPES, CUSTOM_ARCHETYPE } from "@/lib/archetypes";
 import { Button } from "@/components/ui/button";
-import { Star, Pencil, RotateCcw } from "lucide-react";
+import { GenerationView } from "@/components/generation-view";
+import { Star, Pencil, RotateCcw, AlertCircle, Sparkles } from "lucide-react";
+import Link from "next/link";
 import type { WizardStep, Domain } from "@/types";
 
 // ─── Helpers ────────────────────────────────────────────────────
@@ -74,6 +77,13 @@ export function SummaryStep() {
   const resetDNA = useWizardStore((s) => s.resetDNA);
   const setStep = useWizardStore((s) => s.setStep);
   const mode = useSettingsStore((s) => s.mode);
+  const activeProvider = useSettingsStore((s) => s.activeProvider);
+  const providers = useSettingsStore((s) => s.providers);
+
+  const { generate, isGenerating, error, files, activeFile, reset } = useGeneration();
+
+  // Check if API key is configured
+  const hasApiKey = !!providers[activeProvider]?.apiKey;
 
   if (!mounted) {
     return (
@@ -248,12 +258,42 @@ export function SummaryStep() {
         </div>
       )}
 
+      {/* API Key Warning */}
+      {!hasApiKey && (
+        <div className="mt-6 rounded-lg border border-amber-500/30 bg-amber-500/10 p-4">
+          <div className="flex items-start gap-3">
+            <AlertCircle className="h-5 w-5 text-amber-500 shrink-0 mt-0.5" />
+            <div className="flex-1">
+              <p className="text-sm font-medium text-amber-600 dark:text-amber-500">
+                API Key Required
+              </p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Configure your API key in Settings to generate personality files.
+              </p>
+              <Button variant="outline" size="sm" asChild className="mt-3 gap-1.5">
+                <Link href="/settings">Go to Settings</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Generation View */}
+      <GenerationView
+        isGenerating={isGenerating}
+        files={files}
+        activeFile={activeFile}
+        error={error}
+        onRegenerate={generate}
+      />
+
       {/* Bottom area: Generate + Reset */}
       <div className="mt-8 flex items-center justify-between border-t border-border pt-6">
         <Button
           variant="destructive"
           size="sm"
           onClick={() => {
+            reset();
             resetDNA();
           }}
           className="gap-1.5"
@@ -263,11 +303,21 @@ export function SummaryStep() {
         </Button>
 
         <div className="text-right">
-          <Button size="lg" disabled className="gap-2">
-            Generate
+          <Button
+            size="lg"
+            onClick={generate}
+            disabled={isGenerating || !hasApiKey}
+            className="gap-2"
+          >
+            <Sparkles className="h-4 w-4" />
+            {isGenerating ? "Generating..." : files ? "Regenerate" : "Generate"}
           </Button>
           <p className="mt-1.5 text-xs text-muted-foreground">
-            Ready to generate your agent personality files.
+            {!hasApiKey
+              ? "Configure API key first"
+              : files
+                ? "Click to regenerate personality files"
+                : "Ready to generate your agent personality files"}
           </p>
         </div>
       </div>

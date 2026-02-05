@@ -5,6 +5,7 @@ import type {
   ArchetypeId,
   CommunicationStyle,
   Domain,
+  GeneratedFiles,
   Temperament,
   UserRelationship,
   WizardStep,
@@ -60,6 +61,7 @@ const DEFAULT_DNA: AgentDNA = {
 interface WizardState {
   currentStep: WizardStep;
   dna: AgentDNA;
+  generatedFiles: GeneratedFiles | null;
 
   // Navigation
   setStep: (step: WizardStep) => void;
@@ -73,6 +75,7 @@ interface WizardState {
   setArchetype: (id: ArchetypeId | null) => void;
   toggleDomain: (domain: Domain) => void;
   setPrimaryDomain: (domain: Domain) => void;
+  setGeneratedFiles: (files: GeneratedFiles | null) => void;
   resetDNA: () => void;
 }
 
@@ -83,6 +86,7 @@ export const useWizardStore = create<WizardState>()(
     (set) => ({
       currentStep: "archetype",
       dna: { ...DEFAULT_DNA },
+      generatedFiles: null,
 
       setStep: (step) => set({ currentStep: step }),
 
@@ -164,6 +168,8 @@ export const useWizardStore = create<WizardState>()(
           };
         }),
 
+      setGeneratedFiles: (files) => set({ generatedFiles: files }),
+
       resetDNA: () =>
         set({
           currentStep: "archetype",
@@ -176,11 +182,17 @@ export const useWizardStore = create<WizardState>()(
             domains: [],
             primaryDomains: [],
           },
+          generatedFiles: null,
         }),
     }),
     {
       name: "soulgen-wizard",
       storage: createJSONStorage(() => localStorage),
+      // Exclude generatedFiles from persistence (don't persist large generated content)
+      partialize: (state) => ({
+        currentStep: state.currentStep,
+        dna: state.dna,
+      }),
     }
   )
 );

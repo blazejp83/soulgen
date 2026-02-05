@@ -5,6 +5,12 @@ import { useMounted } from "@/hooks/use-mounted";
 import { WizardProgress } from "@/components/wizard/wizard-progress";
 import { WizardNav } from "@/components/wizard/wizard-nav";
 import { ArchetypeStep } from "@/components/wizard/steps/archetype-step";
+import { TemperamentStep } from "@/components/wizard/steps/temperament-step";
+import { CommunicationStep } from "@/components/wizard/steps/communication-step";
+import { WorkStyleStep } from "@/components/wizard/steps/work-style-step";
+import { UserRelationshipStep } from "@/components/wizard/steps/user-relationship-step";
+import { DomainStep } from "@/components/wizard/steps/domain-step";
+import { SummaryStep } from "@/components/wizard/steps/summary-step";
 import type { WizardStep } from "@/types";
 
 // ─── Step Content Router ─────────────────────────────────────────
@@ -14,47 +20,17 @@ function StepContent({ step }: { step: WizardStep }) {
     case "archetype":
       return <ArchetypeStep />;
     case "temperament":
-      return (
-        <div className="py-6 text-center text-muted-foreground">
-          <p className="text-lg font-medium">Temperament</p>
-          <p className="mt-1 text-sm">Configure emotional baseline and personality traits</p>
-        </div>
-      );
+      return <TemperamentStep />;
     case "communication":
-      return (
-        <div className="py-6 text-center text-muted-foreground">
-          <p className="text-lg font-medium">Communication Style</p>
-          <p className="mt-1 text-sm">Set formality, directness, and response preferences</p>
-        </div>
-      );
+      return <CommunicationStep />;
     case "work-style":
-      return (
-        <div className="py-6 text-center text-muted-foreground">
-          <p className="text-lg font-medium">Work Style</p>
-          <p className="mt-1 text-sm">Define depth, explanation approach, and tool usage</p>
-        </div>
-      );
+      return <WorkStyleStep />;
     case "user-relationship":
-      return (
-        <div className="py-6 text-center text-muted-foreground">
-          <p className="text-lg font-medium">User Relationship</p>
-          <p className="mt-1 text-sm">Choose how the agent addresses and interacts with you</p>
-        </div>
-      );
+      return <UserRelationshipStep />;
     case "domains":
-      return (
-        <div className="py-6 text-center text-muted-foreground">
-          <p className="text-lg font-medium">Domains</p>
-          <p className="mt-1 text-sm">Select areas of expertise and specialization</p>
-        </div>
-      );
+      return <DomainStep />;
     case "summary":
-      return (
-        <div className="py-6 text-center text-muted-foreground">
-          <p className="text-lg font-medium">Summary</p>
-          <p className="mt-1 text-sm">Review your agent DNA and generate personality files</p>
-        </div>
-      );
+      return <SummaryStep />;
     default:
       return null;
   }

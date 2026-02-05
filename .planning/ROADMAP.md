@@ -11,7 +11,7 @@ None
 ## Phases
 
 - [x] **Phase 1: Foundation** - Project scaffold, state management, API route with streaming LLM proxy, provider abstraction, mode toggle
-- [ ] **Phase 2: Wizard UI + DNA Engine** - All wizard steps (archetype → temperament → communication → work style → user relationship → domains → summary)
+- [x] **Phase 2: Wizard UI + DNA Engine** - All wizard steps (archetype → temperament → communication → work style → user relationship → domains → summary)
 - [ ] **Phase 3: LLM Generation Pipeline** - Prompt builder, streaming generation, response parsing, multi-provider output handling
 - [ ] **Phase 4: Preview, Export & Persistence** - Tabbed file preview, markdown editing, ZIP export, profile management, URL sharing
 
@@ -39,7 +39,7 @@ Plans:
 Plans:
 - [x] 02-01: Wizard shell + progress indicator + step navigation + archetype selection step
 - [x] 02-02: Temperament sliders + presets + communication style + work style + user relationship steps
-- [ ] 02-03: Domain selection + summary/review step + DNA JSON validation
+- [x] 02-03: Domain selection + summary/review step + DNA JSON validation
 
 ### Phase 3: LLM Generation Pipeline
 **Goal**: Working end-to-end generation: DNA JSON → prompt → streaming LLM call → parsed SOUL.md + IDENTITY.md + USER.md with progress feedback
@@ -71,6 +71,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/2 | Complete | 2026-02-05 |
-| 2. Wizard UI + DNA Engine | 2/3 | In progress | - |
+| 2. Wizard UI + DNA Engine | 3/3 | Complete | 2026-02-05 |
 | 3. LLM Generation Pipeline | 0/1 | Not started | - |
 | 4. Preview, Export & Persistence | 0/2 | Not started | - |

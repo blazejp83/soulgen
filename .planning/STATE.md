@@ -51,6 +51,8 @@ Recent decisions affecting current work:
 | 02-01 | Custom archetype does not reset DNA | Preserves prior configuration if user configured then picked custom |
 | 02-02 | Button groups for 3-4 option selectors | Better discoverability and tap targets than Select dropdowns |
 | 02-02 | Select dropdown for language (10 options) | Button group would be too wide for 10 language options |
+| 02-03 | No Simple/Advanced mode difference for domain step | All users see same 6 domain cards |
+| 02-03 | Generate button disabled in summary | Phase 3 will wire it to generation pipeline |
 
 ### Pending Todos
 
@@ -63,5 +65,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-05
-Stopped at: Completed 02-02-PLAN.md
+Stopped at: Completed 02-03-PLAN.md — Phase 2 complete
 Resume file: None

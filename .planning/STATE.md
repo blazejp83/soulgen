@@ -5,33 +5,34 @@
 See: .planning/PROJECT.md (updated 2026-02-05)
 
 **Core value:** Anyone can create a distinct, well-crafted agent personality without writing a single line of markdown — just configure sliders and options, hit generate, and get files that make an OpenClaw agent feel like a real individual.
-**Current focus:** Phase 1 complete — ready for Phase 2
+**Current focus:** Phase 2 in progress — wizard UI and DNA engine
 
 ## Current Position
 
-Phase: 1 of 4 (Foundation) — COMPLETE
-Plan: 2/2 complete
-Status: Phase complete
-Last activity: 2026-02-05 — Phase 1 execution complete
+Phase: 2 of 4 (Wizard UI + DNA Engine)
+Plan: 1/3 complete in current phase
+Status: In progress
+Last activity: 2026-02-05 — Completed 02-01-PLAN.md
 
-Progress: ██▓░░░░░░░ 25%
+Progress: ███▓░░░░░░ 38%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 2
-- Average duration: 15 min
-- Total execution time: 29 min
+- Total plans completed: 3
+- Average duration: 11 min
+- Total execution time: 32 min
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 1-Foundation | 2/2 | 29 min | 15 min |
+| 2-Wizard UI | 1/3 | 3 min | 3 min |
 
 **Recent Trend:**
-- Last 5 plans: 3 min, 26 min
-- Trend: stabilizing
+- Last 5 plans: 3 min, 26 min, 3 min
+- Trend: fast
 
 ## Accumulated Context
 
@@ -46,6 +47,8 @@ Recent decisions affecting current work:
 | 01-01 | Zustand v5 with createJSONStorage | Clean localStorage persist pattern with SSR safety |
 | 01-02 | @openrouter/ai-sdk-provider instead of @ai-sdk/openrouter | @ai-sdk/openrouter does not exist; official package is @openrouter/ai-sdk-provider |
 | 01-02 | toTextStreamResponse() for AI SDK v6 | toDataStreamResponse() no longer exists in AI SDK v6 |
+| 02-01 | WIZARD_STEPS shared constant from wizard-progress.tsx | DRY step ordering used by both progress indicator and nav |
+| 02-01 | Custom archetype does not reset DNA | Preserves prior configuration if user configured then picked custom |
 
 ### Pending Todos
 
@@ -58,5 +61,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-05
-Stopped at: Phase 1 execution complete
+Stopped at: Completed 02-01-PLAN.md
 Resume file: None

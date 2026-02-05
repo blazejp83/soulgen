@@ -26,7 +26,7 @@ None
 **Plans**: TBD
 
 Plans:
-- [ ] 01-01: Next.js scaffold + shadcn/ui + Zustand stores + localStorage persistence
+- [x] 01-01: Next.js scaffold + shadcn/ui + Zustand stores + localStorage persistence
 - [ ] 01-02: API route with streaming LLM proxy + multi-provider adapter + API key management
 - [ ] 01-03: Simple/Advanced mode toggle + settings page shell
 
@@ -71,7 +71,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/3 | Not started | - |
+| 1. Foundation | 1/3 | In progress | - |
 | 2. Wizard UI + DNA Engine | 0/3 | Not started | - |
 | 3. LLM Generation Pipeline | 0/1 | Not started | - |
 | 4. Preview, Export & Persistence | 0/2 | Not started | - |

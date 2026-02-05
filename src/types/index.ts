@@ -111,3 +111,11 @@ export type WizardStep =
   | "user-relationship"
   | "domains"
   | "summary";
+
+// ─── Generated Files ─────────────────────────────────────────────
+
+export interface GeneratedFiles {
+  soul: string;     // SOUL.md content
+  identity: string; // IDENTITY.md content
+  user: string;     // USER.md content
+}

@@ -168,13 +168,74 @@ Which phases cover which requirements. Updated by create-roadmap.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| — | — | Pending |
+| AKEY-01 | Phase 1 | Pending |
+| AKEY-02 | Phase 1 | Pending |
+| AKEY-03 | Phase 1 | Pending |
+| AKEY-04 | Phase 1 | Pending |
+| PROV-01 | Phase 1 | Pending |
+| PROV-02 | Phase 1 | Pending |
+| PROV-03 | Phase 1 | Pending |
+| MODE-01 | Phase 1 | Pending |
+| MODE-02 | Phase 1 | Pending |
+| MODE-03 | Phase 1 | Pending |
+| MODE-04 | Phase 1 | Pending |
+| PERS-01 | Phase 1 | Pending |
+| PERS-02 | Phase 1 | Pending |
+| WIZD-01 | Phase 2 | Pending |
+| WIZD-02 | Phase 2 | Pending |
+| WIZD-03 | Phase 2 | Pending |
+| WIZD-04 | Phase 2 | Pending |
+| ARCH-01 | Phase 2 | Pending |
+| ARCH-02 | Phase 2 | Pending |
+| ARCH-03 | Phase 2 | Pending |
+| ARCH-04 | Phase 2 | Pending |
+| ARCH-05 | Phase 2 | Pending |
+| ARCH-06 | Phase 2 | Pending |
+| TEMP-01 | Phase 2 | Pending |
+| TEMP-02 | Phase 2 | Pending |
+| TEMP-03 | Phase 2 | Pending |
+| TEMP-04 | Phase 2 | Pending |
+| TEMP-05 | Phase 2 | Pending |
+| COMM-01 | Phase 2 | Pending |
+| COMM-02 | Phase 2 | Pending |
+| COMM-03 | Phase 2 | Pending |
+| COMM-04 | Phase 2 | Pending |
+| COMM-05 | Phase 2 | Pending |
+| COMM-06 | Phase 2 | Pending |
+| WORK-01 | Phase 2 | Pending |
+| WORK-02 | Phase 2 | Pending |
+| WORK-03 | Phase 2 | Pending |
+| WORK-04 | Phase 2 | Pending |
+| USER-01 | Phase 2 | Pending |
+| USER-02 | Phase 2 | Pending |
+| USER-03 | Phase 2 | Pending |
+| USER-04 | Phase 2 | Pending |
+| DOMN-01 | Phase 2 | Pending |
+| DOMN-02 | Phase 2 | Pending |
+| DOMN-03 | Phase 2 | Pending |
+| GENR-01 | Phase 3 | Pending |
+| GENR-02 | Phase 3 | Pending |
+| GENR-03 | Phase 3 | Pending |
+| WIZD-05 | Phase 4 | Pending |
+| PREV-01 | Phase 4 | Pending |
+| PREV-02 | Phase 4 | Pending |
+| PREV-03 | Phase 4 | Pending |
+| PREV-04 | Phase 4 | Pending |
+| PREV-05 | Phase 4 | Pending |
+| EXPO-01 | Phase 4 | Pending |
+| EXPO-02 | Phase 4 | Pending |
+| EXPO-03 | Phase 4 | Pending |
+| PERS-03 | Phase 4 | Pending |
+| PERS-04 | Phase 4 | Pending |
+| PERS-05 | Phase 4 | Pending |
+| PERS-06 | Phase 4 | Pending |
+| PERS-07 | Phase 4 | Pending |
 
 **Coverage:**
-- v1 requirements: 53 total
-- Mapped to phases: 0
-- Unmapped: 53 ⚠️
+- v1 requirements: 62 total
+- Mapped to phases: 62
+- Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-02-05*
-*Last updated: 2026-02-05 after initial definition*
+*Last updated: 2026-02-05 after roadmap creation*

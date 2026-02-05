@@ -50,7 +50,7 @@ Plans:
 **Plans**: TBD
 
 Plans:
-- [ ] 03-01: Prompt builder + generation API integration + streaming response parser + generation UI
+- [x] 03-01: Prompt builder + generation API integration + streaming response parser + generation UI
 
 ### Phase 4: Preview, Export & Persistence
 **Goal**: Tabbed file preview with markdown rendering and editing, ZIP export, clipboard copy, profile save/load, JSON import, URL sharing
@@ -72,5 +72,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/2 | Complete | 2026-02-05 |
 | 2. Wizard UI + DNA Engine | 3/3 | Complete | 2026-02-05 |
-| 3. LLM Generation Pipeline | 0/1 | Not started | - |
+| 3. LLM Generation Pipeline | 1/1 | Complete | 2026-02-05 |
 | 4. Preview, Export & Persistence | 0/2 | Not started | - |

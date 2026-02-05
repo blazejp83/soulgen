@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-02-05)
 
 **Core value:** Anyone can create a distinct, well-crafted agent personality without writing a single line of markdown — just configure sliders and options, hit generate, and get files that make an OpenClaw agent feel like a real individual.
-**Current focus:** Phase 2 complete — ready for Phase 3 (LLM Generation Pipeline)
+**Current focus:** Phase 3 complete — ready for Phase 4 (Preview, Export & Persistence)
 
 ## Current Position
 
-Phase: 2 of 4 (Wizard UI + DNA Engine)
-Plan: 3/3 complete in current phase
+Phase: 3 of 4 (LLM Generation Pipeline)
+Plan: 1/1 complete in current phase
 Status: Phase complete
-Last activity: 2026-02-05 — Completed 02-03-PLAN.md
+Last activity: 2026-02-05 — Completed 03-01-PLAN.md
 
-Progress: ██████░░░░ 62%
+Progress: ████████░░ 75%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 5
-- Average duration: 8 min
-- Total execution time: 37 min
+- Total plans completed: 6
+- Average duration: 7 min
+- Total execution time: 41 min
 
 **By Phase:**
 
@@ -29,9 +29,10 @@ Progress: ██████░░░░ 62%
 |-------|-------|-------|----------|
 | 1-Foundation | 2/2 | 29 min | 15 min |
 | 2-Wizard UI | 3/3 | 8 min | 3 min |
+| 3-LLM Generation | 1/1 | 4 min | 4 min |
 
 **Recent Trend:**
-- Last 5 plans: 3 min, 2 min, 3 min, 26 min, 3 min
+- Last 5 plans: 2 min, 3 min, 26 min, 3 min, 4 min
 - Trend: fast
 
 ## Accumulated Context
@@ -52,7 +53,8 @@ Recent decisions affecting current work:
 | 02-02 | Button groups for 3-4 option selectors | Better discoverability and tap targets than Select dropdowns |
 | 02-02 | Select dropdown for language (10 options) | Button group would be too wide for 10 language options |
 | 02-03 | No Simple/Advanced mode difference for domain step | All users see same 6 domain cards |
-| 02-03 | Generate button disabled in summary | Phase 3 will wire it to generation pipeline |
+| 03-01 | Delimiter-based file parsing (---FILE: X.md---) | Simpler to stream, easier to debug, works with all LLM providers |
+| 03-01 | Excluded generatedFiles from localStorage persist | Avoids bloating storage with large generated content |
 
 ### Pending Todos
 
@@ -65,5 +67,5 @@ None.
 ## Session Continuity
 
 Last session: 2026-02-05
-Stopped at: Completed 02-03-PLAN.md — Phase 2 complete
+Stopped at: Completed 03-01-PLAN.md — Phase 3 complete
 Resume file: None

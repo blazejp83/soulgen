@@ -168,19 +168,19 @@ Which phases cover which requirements. Updated by create-roadmap.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| AKEY-01 | Phase 1 | Pending |
-| AKEY-02 | Phase 1 | Pending |
-| AKEY-03 | Phase 1 | Pending |
-| AKEY-04 | Phase 1 | Pending |
-| PROV-01 | Phase 1 | Pending |
-| PROV-02 | Phase 1 | Pending |
-| PROV-03 | Phase 1 | Pending |
-| MODE-01 | Phase 1 | Pending |
-| MODE-02 | Phase 1 | Pending |
-| MODE-03 | Phase 1 | Pending |
-| MODE-04 | Phase 1 | Pending |
-| PERS-01 | Phase 1 | Pending |
-| PERS-02 | Phase 1 | Pending |
+| AKEY-01 | Phase 1 | Complete |
+| AKEY-02 | Phase 1 | Complete |
+| AKEY-03 | Phase 1 | Complete |
+| AKEY-04 | Phase 1 | Complete |
+| PROV-01 | Phase 1 | Complete |
+| PROV-02 | Phase 1 | Complete |
+| PROV-03 | Phase 1 | Complete |
+| MODE-01 | Phase 1 | Complete |
+| MODE-02 | Phase 1 | Complete |
+| MODE-03 | Phase 1 | Complete |
+| MODE-04 | Phase 1 | Complete |
+| PERS-01 | Phase 1 | Complete |
+| PERS-02 | Phase 1 | Complete |
 | WIZD-01 | Phase 2 | Pending |
 | WIZD-02 | Phase 2 | Pending |
 | WIZD-03 | Phase 2 | Pending |

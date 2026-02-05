@@ -10,7 +10,7 @@ None
 
 ## Phases
 
-- [ ] **Phase 1: Foundation** - Project scaffold, state management, API route with streaming LLM proxy, provider abstraction, mode toggle
+- [x] **Phase 1: Foundation** - Project scaffold, state management, API route with streaming LLM proxy, provider abstraction, mode toggle
 - [ ] **Phase 2: Wizard UI + DNA Engine** - All wizard steps (archetype → temperament → communication → work style → user relationship → domains → summary)
 - [ ] **Phase 3: LLM Generation Pipeline** - Prompt builder, streaming generation, response parsing, multi-provider output handling
 - [ ] **Phase 4: Preview, Export & Persistence** - Tabbed file preview, markdown editing, ZIP export, profile management, URL sharing
@@ -27,8 +27,7 @@ None
 
 Plans:
 - [x] 01-01: Next.js scaffold + shadcn/ui + Zustand stores + localStorage persistence
-- [x] 01-02: API route with streaming LLM proxy + multi-provider adapter + API key management
-- [ ] 01-03: Simple/Advanced mode toggle + settings page shell
+- [x] 01-02: API route with streaming LLM proxy + multi-provider adapter + API key management + mode toggle + settings page
 
 ### Phase 2: Wizard UI + DNA Engine
 **Goal**: Complete multi-step wizard with all configuration steps functional, DNA JSON accumulating correctly, progress indicator, step navigation, and archetype presets pre-filling values
@@ -71,7 +70,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 2/3 | In progress | - |
+| 1. Foundation | 2/2 | Complete | 2026-02-05 |
 | 2. Wizard UI + DNA Engine | 0/3 | Not started | - |
 | 3. LLM Generation Pipeline | 0/1 | Not started | - |
 | 4. Preview, Export & Persistence | 0/2 | Not started | - |

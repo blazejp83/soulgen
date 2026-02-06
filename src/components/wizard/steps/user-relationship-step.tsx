@@ -1,11 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import { useWizardStore } from "@/stores/wizard-store";
 import { useSettingsStore } from "@/stores/settings-store";
 import { useMounted } from "@/hooks/use-mounted";
 import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -159,23 +161,46 @@ export function UserRelationshipStep() {
         {/* Language - USER-04 */}
         <div className="space-y-2">
           <Label className="text-sm font-medium">Language</Label>
-          <Select
-            value={userRelationship.language}
-            onValueChange={(val) =>
-              updateUserRelationship({ language: val })
-            }
-          >
-            <SelectTrigger className="w-48">
-              <SelectValue placeholder="Select language" />
-            </SelectTrigger>
-            <SelectContent>
-              {LANGUAGE_OPTIONS.map((opt) => (
-                <SelectItem key={opt.value} value={opt.value}>
-                  {opt.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <div className="flex gap-2 items-center">
+            <Select
+              value={
+                LANGUAGE_OPTIONS.some((opt) => opt.value === userRelationship.language)
+                  ? userRelationship.language
+                  : ""
+              }
+              onValueChange={(val) =>
+                updateUserRelationship({ language: val })
+              }
+            >
+              <SelectTrigger className="w-48">
+                <SelectValue placeholder="Select language" />
+              </SelectTrigger>
+              <SelectContent>
+                {LANGUAGE_OPTIONS.map((opt) => (
+                  <SelectItem key={opt.value} value={opt.value}>
+                    {opt.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <span className="text-sm text-muted-foreground">or</span>
+            <Input
+              type="text"
+              placeholder="Enter custom language"
+              className="w-48"
+              value={
+                LANGUAGE_OPTIONS.some((opt) => opt.value === userRelationship.language)
+                  ? ""
+                  : userRelationship.language
+              }
+              onChange={(e) =>
+                updateUserRelationship({ language: e.target.value })
+              }
+            />
+          </div>
+          <p className="text-xs text-muted-foreground">
+            Select from common languages or type your own (e.g., &quot;Dutch&quot;, &quot;Swedish&quot;, &quot;ru&quot;)
+          </p>
         </div>
       </div>
     </div>

@@ -4,16 +4,12 @@ import type { GeneratedFiles } from "@/types";
 
 type FileKey = "soul" | "identity" | "user";
 
-// Regex patterns for more robust matching
-// Matches variations like:
-// ---FILE: SOUL.md---
-// --- FILE: SOUL.md ---
-// ---FILE:SOUL.md---
-// **---FILE: SOUL.md---**
+// Regex patterns for matching file delimiters
+// Matches: ---FILE: SOUL.md--- (with variations in spacing/dashes)
 const FILE_PATTERNS: { key: FileKey; pattern: RegExp }[] = [
-  { key: "soul", pattern: /\*{0,2}-{2,}\s*FILE:\s*SOUL\.md\s*-{2,}\*{0,2}/i },
-  { key: "identity", pattern: /\*{0,2}-{2,}\s*FILE:\s*IDENTITY\.md\s*-{2,}\*{0,2}/i },
-  { key: "user", pattern: /\*{0,2}-{2,}\s*FILE:\s*USER\.md\s*-{2,}\*{0,2}/i },
+  { key: "soul", pattern: /\n?-{2,}\s*FILE:\s*SOUL\.md\s*-{2,}/i },
+  { key: "identity", pattern: /\n?-{2,}\s*FILE:\s*IDENTITY\.md\s*-{2,}/i },
+  { key: "user", pattern: /\n?-{2,}\s*FILE:\s*USER\.md\s*-{2,}/i },
 ];
 
 // ─── Generation Parser ──────────────────────────────────────────
@@ -21,18 +17,9 @@ const FILE_PATTERNS: { key: FileKey; pattern: RegExp }[] = [
 /**
  * A stateful streaming parser that splits delimited LLM output into
  * separate SOUL.md, IDENTITY.md, and USER.md content.
- *
- * Usage:
- *   const parser = new GenerationParser();
- *   for await (const chunk of stream) {
- *     const files = parser.push(chunk);
- *     // files has current state of all three files
- *   }
- *   const final = parser.getResult();
  */
 export class GenerationParser {
   private buffer: string = "";
-  // Default to "soul" since LLM often starts without explicit delimiter
   private currentFile: FileKey = "soul";
   private files: GeneratedFiles = { soul: "", identity: "", user: "" };
 
@@ -50,8 +37,11 @@ export class GenerationParser {
    * Get the final parsed result with trimmed content.
    */
   getResult(): GeneratedFiles {
-    // Process any remaining buffer
-    this.processBuffer();
+    // Flush any remaining buffer content
+    if (this.buffer.length > 0) {
+      this.files[this.currentFile] += this.buffer;
+      this.buffer = "";
+    }
 
     return {
       soul: this.files.soul.trim(),
@@ -72,15 +62,15 @@ export class GenerationParser {
    */
   reset(): void {
     this.buffer = "";
-    this.currentFile = "soul"; // Default to soul
+    this.currentFile = "soul";
     this.files = { soul: "", identity: "", user: "" };
   }
 
   // ─── Private Methods ───────────────────────────────────────────
 
   private processBuffer(): void {
-    // Keep processing as long as we can find delimiters or content
     let processed = true;
+
     while (processed) {
       processed = false;
 
@@ -91,7 +81,7 @@ export class GenerationParser {
         const { key, index, length } = nextDelimiter;
 
         // Content before the delimiter belongs to current file
-        if (index > 0 && this.currentFile) {
+        if (index > 0) {
           this.files[this.currentFile] += this.buffer.slice(0, index);
         }
 
@@ -108,25 +98,19 @@ export class GenerationParser {
 
         processed = true;
       } else {
-        // No delimiter found - check if we might have a partial delimiter at end
-        const partialDelimiter = this.hasPartialDelimiter();
+        // No complete delimiter found
+        // Keep everything after the last newline in buffer (delimiter might be split)
+        // Flush everything before the last newline to the current file
+        const lastNewline = this.buffer.lastIndexOf("\n");
 
-        if (partialDelimiter > 0) {
-          // Keep the potential partial delimiter in buffer, process the rest
-          const safeContent = this.buffer.slice(0, -partialDelimiter);
-          if (safeContent.length > 0) {
-            this.files[this.currentFile] += safeContent;
-            this.buffer = this.buffer.slice(-partialDelimiter);
-            processed = true;
-          }
-        } else {
-          // No partial delimiter - all content belongs to current file
-          if (this.buffer.length > 0) {
-            this.files[this.currentFile] += this.buffer;
-            this.buffer = "";
-            processed = true;
-          }
+        if (lastNewline > 0) {
+          // There's content before the last newline - safe to flush
+          const safeContent = this.buffer.slice(0, lastNewline + 1);
+          this.files[this.currentFile] += safeContent;
+          this.buffer = this.buffer.slice(lastNewline + 1);
+          processed = true;
         }
+        // If no newline or only at start, keep accumulating in buffer
       }
     }
   }
@@ -146,32 +130,5 @@ export class GenerationParser {
     }
 
     return result;
-  }
-
-  private hasPartialDelimiter(): number {
-    // Check if buffer ends with a partial "---FILE:" or similar
-    // We need to keep enough chars to potentially match any delimiter
-    // Max delimiter length is around 25 chars, so check up to 30
-    const maxCheck = Math.min(30, this.buffer.length);
-
-    for (let i = 1; i <= maxCheck; i++) {
-      const potentialPartial = this.buffer.slice(-i);
-      // Check if this could be the start of any delimiter pattern
-      if (
-        potentialPartial.match(/^-+$/) ||
-        potentialPartial.match(/^-+\s*$/) ||
-        potentialPartial.match(/^-+\s*F/i) ||
-        potentialPartial.match(/^-+\s*FILE/i) ||
-        potentialPartial.match(/^-+\s*FILE:/i) ||
-        potentialPartial.match(/^-+\s*FILE:\s*/i) ||
-        potentialPartial.match(/^-+\s*FILE:\s*[A-Z]/i) ||
-        potentialPartial.match(/^\*+-+/i) ||
-        potentialPartial.match(/^\*+$/i)
-      ) {
-        return i;
-      }
-    }
-
-    return 0;
   }
 }

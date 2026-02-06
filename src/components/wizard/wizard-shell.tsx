@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { useWizardStore } from "@/stores/wizard-store";
 import { useMounted } from "@/hooks/use-mounted";
 import { WizardProgress } from "@/components/wizard/wizard-progress";
@@ -11,6 +12,8 @@ import { WorkStyleStep } from "@/components/wizard/steps/work-style-step";
 import { UserRelationshipStep } from "@/components/wizard/steps/user-relationship-step";
 import { DomainStep } from "@/components/wizard/steps/domain-step";
 import { SummaryStep } from "@/components/wizard/steps/summary-step";
+import { decodeShareableUrl } from "@/lib/export";
+import { toast } from "sonner";
 import type { WizardStep } from "@/types";
 
 // ─── Step Content Router ─────────────────────────────────────────
@@ -41,6 +44,43 @@ function StepContent({ step }: { step: WizardStep }) {
 export function WizardShell() {
   const mounted = useMounted();
   const currentStep = useWizardStore((s) => s.currentStep);
+  const updateDNA = useWizardStore((s) => s.updateDNA);
+  const setStep = useWizardStore((s) => s.setStep);
+  const hasProcessedUrl = useRef(false);
+
+  // Check for shared DNA in URL on mount
+  useEffect(() => {
+    // Only run once after mount, and only in browser
+    if (!mounted || hasProcessedUrl.current) return;
+    if (typeof window === "undefined") return;
+
+    const params = new URLSearchParams(window.location.search);
+    const dnaParam = params.get("dna");
+
+    if (!dnaParam) return;
+
+    hasProcessedUrl.current = true;
+
+    // Attempt to decode the DNA
+    const fullUrl = window.location.href;
+    const loadedDna = decodeShareableUrl(fullUrl);
+
+    if (loadedDna) {
+      // Update store with loaded DNA
+      updateDNA(loadedDna);
+      // Navigate to summary step to show the loaded configuration
+      setStep("summary");
+      // Show success toast
+      toast.success("Loaded shared agent configuration!");
+    } else {
+      // Show error toast for invalid share link
+      toast.error("Invalid share link");
+    }
+
+    // Clean up URL by removing the dna parameter
+    const cleanUrl = window.location.pathname;
+    window.history.replaceState({}, document.title, cleanUrl);
+  }, [mounted, updateDNA, setStep]);
 
   if (!mounted) {
     return (

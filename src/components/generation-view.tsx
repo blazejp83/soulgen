@@ -5,10 +5,12 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { RefreshCw, Check, Loader2, Settings, AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
-import type { GeneratedFiles } from "@/types";
+import type { AgentDNA, GeneratedFiles } from "@/types";
 import type { ActiveFile } from "@/hooks/use-generation";
 import { useFileHistory } from "@/hooks/use-file-history";
 import { FilePreview } from "@/components/file-preview";
+import { ExportPanel } from "@/components/export-panel";
+import { ProfileManager } from "@/components/profile-manager";
 import Link from "next/link";
 
 // ─── Types ───────────────────────────────────────────────────────
@@ -18,7 +20,9 @@ interface GenerationViewProps {
   files: GeneratedFiles | null;
   activeFile: ActiveFile;
   error: string | null;
+  dna: AgentDNA;
   onRegenerate: () => void;
+  onLoadProfile: (dna: AgentDNA) => void;
 }
 
 // ─── File Indicator ──────────────────────────────────────────────
@@ -154,7 +158,9 @@ export function GenerationView({
   files,
   activeFile,
   error,
+  dna,
   onRegenerate,
+  onLoadProfile,
 }: GenerationViewProps) {
   const [selectedTab, setSelectedTab] = useState<string>("soul");
 
@@ -241,16 +247,16 @@ export function GenerationView({
           </TabsContent>
         </Tabs>
 
+        {/* Export Panel */}
+        <ExportPanel files={files} dna={dna} />
+
         {/* Action Buttons */}
         <div className="flex items-center gap-3 pt-2">
           <Button variant="outline" size="sm" onClick={onRegenerate} className="gap-1.5">
             <RefreshCw className="h-3 w-3" />
             Regenerate
           </Button>
-          <Button size="sm" disabled className="gap-1.5">
-            Continue to Export
-          </Button>
-          <span className="text-xs text-muted-foreground">(Coming in Phase 4)</span>
+          <ProfileManager currentDna={dna} onLoadProfile={onLoadProfile} />
         </div>
       </div>
     );

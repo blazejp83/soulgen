@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { GenerationView } from "@/components/generation-view";
 import { Star, Pencil, RotateCcw, AlertCircle, Sparkles } from "lucide-react";
 import Link from "next/link";
-import type { WizardStep, Domain } from "@/types";
+import type { AgentDNA, WizardStep, Domain } from "@/types";
 
 // ─── Helpers ────────────────────────────────────────────────────
 
@@ -75,12 +75,23 @@ export function SummaryStep() {
   const mounted = useMounted();
   const dna = useWizardStore((s) => s.dna);
   const resetDNA = useWizardStore((s) => s.resetDNA);
+  const updateDNA = useWizardStore((s) => s.updateDNA);
+  const setGeneratedFiles = useWizardStore((s) => s.setGeneratedFiles);
   const setStep = useWizardStore((s) => s.setStep);
   const mode = useSettingsStore((s) => s.mode);
   const activeProvider = useSettingsStore((s) => s.activeProvider);
   const providers = useSettingsStore((s) => s.providers);
 
   const { generate, isGenerating, error, files, activeFile, reset } = useGeneration();
+
+  // Handle loading a profile from ProfileManager
+  const handleLoadProfile = (loadedDna: AgentDNA) => {
+    // Update all DNA fields from the loaded profile
+    updateDNA(loadedDna);
+    // Reset generated files since DNA changed
+    setGeneratedFiles(null);
+    reset();
+  };
 
   // Check if API key is configured
   const hasApiKey = !!providers[activeProvider]?.apiKey;
@@ -284,7 +295,9 @@ export function SummaryStep() {
         files={files}
         activeFile={activeFile}
         error={error}
+        dna={dna}
         onRegenerate={generate}
+        onLoadProfile={handleLoadProfile}
       />
 
       {/* Bottom area: Generate + Reset */}

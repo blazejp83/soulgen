@@ -2,13 +2,19 @@ import type { GeneratedFiles } from "@/types";
 
 // ─── File Delimiters ────────────────────────────────────────────
 
-const FILE_DELIMITERS = {
-  soul: "---FILE: SOUL.md---",
-  identity: "---FILE: IDENTITY.md---",
-  user: "---FILE: USER.md---",
-} as const;
+type FileKey = "soul" | "identity" | "user";
 
-type FileKey = keyof typeof FILE_DELIMITERS;
+// Regex patterns for more robust matching
+// Matches variations like:
+// ---FILE: SOUL.md---
+// --- FILE: SOUL.md ---
+// ---FILE:SOUL.md---
+// **---FILE: SOUL.md---**
+const FILE_PATTERNS: { key: FileKey; pattern: RegExp }[] = [
+  { key: "soul", pattern: /\*{0,2}-{2,}\s*FILE:\s*SOUL\.md\s*-{2,}\*{0,2}/i },
+  { key: "identity", pattern: /\*{0,2}-{2,}\s*FILE:\s*IDENTITY\.md\s*-{2,}\*{0,2}/i },
+  { key: "user", pattern: /\*{0,2}-{2,}\s*FILE:\s*USER\.md\s*-{2,}\*{0,2}/i },
+];
 
 // ─── Generation Parser ──────────────────────────────────────────
 
@@ -94,8 +100,8 @@ export class GenerationParser {
         // Remove processed content and delimiter from buffer
         this.buffer = this.buffer.slice(index + length);
 
-        // Skip leading newline after delimiter if present
-        if (this.buffer.startsWith("\n")) {
+        // Skip leading newlines after delimiter
+        while (this.buffer.startsWith("\n")) {
           this.buffer = this.buffer.slice(1);
         }
 
@@ -120,6 +126,11 @@ export class GenerationParser {
             processed = true;
           }
         }
+      } else {
+        // No current file yet - look for first delimiter
+        // If no delimiter found, keep accumulating in buffer
+        // This handles preamble text before first file delimiter
+        break;
       }
     }
   }
@@ -127,11 +138,13 @@ export class GenerationParser {
   private findNextDelimiter(): { key: FileKey; index: number; length: number } | null {
     let result: { key: FileKey; index: number; length: number } | null = null;
 
-    for (const [key, delimiter] of Object.entries(FILE_DELIMITERS)) {
-      const index = this.buffer.indexOf(delimiter);
-      if (index !== -1) {
+    for (const { key, pattern } of FILE_PATTERNS) {
+      const match = pattern.exec(this.buffer);
+      if (match) {
+        const index = match.index;
+        const length = match[0].length;
         if (!result || index < result.index) {
-          result = { key: key as FileKey, index, length: delimiter.length };
+          result = { key, index, length };
         }
       }
     }
@@ -142,11 +155,23 @@ export class GenerationParser {
   private hasPartialDelimiter(): number {
     // Check if buffer ends with a partial "---FILE:" or similar
     // We need to keep enough chars to potentially match any delimiter
-    const marker = "---FILE:";
+    // Max delimiter length is around 25 chars, so check up to 30
+    const maxCheck = Math.min(30, this.buffer.length);
 
-    for (let i = 1; i < marker.length; i++) {
+    for (let i = 1; i <= maxCheck; i++) {
       const potentialPartial = this.buffer.slice(-i);
-      if (marker.startsWith(potentialPartial)) {
+      // Check if this could be the start of any delimiter pattern
+      if (
+        potentialPartial.match(/^-+$/) ||
+        potentialPartial.match(/^-+\s*$/) ||
+        potentialPartial.match(/^-+\s*F/i) ||
+        potentialPartial.match(/^-+\s*FILE/i) ||
+        potentialPartial.match(/^-+\s*FILE:/i) ||
+        potentialPartial.match(/^-+\s*FILE:\s*/i) ||
+        potentialPartial.match(/^-+\s*FILE:\s*[A-Z]/i) ||
+        potentialPartial.match(/^\*+-+/i) ||
+        potentialPartial.match(/^\*+$/i)
+      ) {
         return i;
       }
     }

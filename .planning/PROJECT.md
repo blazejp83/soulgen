@@ -12,29 +12,27 @@ Anyone can create a distinct, well-crafted agent personality without writing a s
 
 ### Validated
 
-(None yet — ship to validate)
+- Multi-step wizard flow: Archetype -> Temperament -> Communication Style -> Work Style -> User Relationship -> Domains -> Summary -> Generate -> Export — v1.0
+- Archetype selection: 7 predefined role cards plus custom with descriptions and tags — v1.0
+- Temperament configuration: 6 bipolar sliders with 4 presets (Melancholic, Joyful, Angry, Haughty) — v1.0
+- Communication style settings: Formality, humor, directness, response length, structure preference, jargon level — v1.0
+- Work style settings: Default depth, explanation style, tool usage preference, uncertainty tolerance — v1.0
+- User relationship settings: Address form, feedback style, proactivity level, language (including custom input) — v1.0
+- Domain/specialization selection: 6 predefined domains + custom with priority marking (max 3) — v1.0
+- DNA summary view: Readable summary + raw JSON edit mode for power users — v1.0
+- LLM-powered file generation: DNA -> SOUL.md + IDENTITY.md + USER.md with streaming progress — v1.0
+- Multi-provider LLM support: OpenAI, Anthropic, OpenRouter with user-provided API keys — v1.0
+- File preview & editing: Tabbed view with markdown rendering, editing, undo/redo history — v1.0
+- Export: ZIP download, copy-to-clipboard, shareable URLs — v1.0
+- Settings page: API key entry, model selection, provider switching — v1.0
+- Simple vs Advanced mode: Simple shows key options; Advanced reveals all parameters — v1.0
+- Load existing DNA: Import JSON, URL sharing for cloning — v1.0
+- localStorage persistence: Save API keys, created agent profiles, and settings — v1.0
 
 ### Active
 
-- [ ] **Multi-step wizard flow**: Archetype → Temperament → Communication Style → Domains → Summary → Generate → Export
-- [ ] **Archetype selection**: Predefined role cards (Developer, Researcher, Automation/DevOps, PM/Organizer, Coach, Storyteller, General Assistant) with descriptions and tags
-- [ ] **Temperament configuration**: Sliders for valence (pessimistic↔optimistic), energy (calm↔energized), warmth (cold↔empathetic), dominance (gentle↔assertive), emotional stability (reactive↔stable). Presets (Melancholic, Joyful, Angry, Haughty) that set slider values
-- [ ] **Communication style settings**: Formality, humor (0-5), directness, response length, structure preference, jargon level
-- [ ] **Work style settings**: Default depth (overview↔deep dive), explanation style, tool usage preference, uncertainty tolerance
-- [ ] **User relationship settings**: Address form, feedback style, proactivity level
-- [ ] **Agent response language**: Configurable language preference for how the agent responds (saved in USER.md)
-- [ ] **Domain/specialization selection**: Multi-select tags (Coding, Research, Automation, Writing, Planning, Media) with priority marking (max 2-3)
-- [ ] **DNA summary view**: Readable summary + raw JSON/advanced edit mode for power users
-- [ ] **LLM-powered file generation**: Send DNA payload to LLM, receive SOUL.md + IDENTITY.md + USER.md (optional)
-- [ ] **Multi-provider LLM support**: OpenAI (hardcoded models), Anthropic (hardcoded models), OpenRouter (dynamic model list via API). User provides their own API key
-- [ ] **File preview & editing**: Tabbed view of generated files with markdown editing, per-section regeneration, and session-local version history
-- [ ] **Export**: ZIP download of all files + OpenClaw config snippets + copy-to-clipboard per file
-- [ ] **Settings page**: API key entry, model selection, provider switching
-- [ ] **Simple vs Advanced mode**: Simple shows key sliders only; Advanced reveals all parameters
-- [ ] **Load existing DNA**: Import JSON or paste to edit/clone an existing agent
-- [ ] **i18n**: English and Polish UI (generated files always in English)
-- [ ] **localStorage persistence**: Save API keys, created agent profiles, and settings in browser
-- [ ] **Agent chat preview** (nice-to-have): Test generated personality with a mini chat interface using the generated SOUL/IDENTITY as system prompt
+- [ ] i18n: English and Polish UI (generated files always in English)
+- [ ] Agent chat preview: Test generated personality with mini chat interface
 
 ### Out of Scope
 
@@ -46,12 +44,15 @@ Anyone can create a distinct, well-crafted agent personality without writing a s
 
 ## Context
 
-- **OpenClaw agent identity system**: Agents use `SOUL.md` (behavioral philosophy), `IDENTITY.md` (presentation: name, emoji, creature, vibe, avatar), and `USER.md` (user context/preferences) as text files loaded at session start. See reference files in repo.
-- **SOUL.md**: Defines core truths, boundaries, vibe, continuity rules. Written as a manifesto, not a system prompt.
-- **IDENTITY.md**: Structured metadata — name, creature type, vibe descriptor, emoji, avatar path.
-- **USER.md**: How the agent treats the user — communication preferences, language, relationship style.
-- **Existing spec**: Detailed Polish-language spec in `agent-persona-generator-spec.md` covers full UX flow, all form fields, and generation/export mechanics.
-- **Design aesthetic**: To be determined via frontend-design skill during implementation — should feel distinctive, not generic.
+**Current State (v1.0 shipped):**
+- ~5,757 lines of TypeScript across 24 source files
+- Tech stack: Next.js 15, React 19, Tailwind CSS v4, shadcn/ui, Zustand 5, AI SDK v6
+- Providers: OpenAI, Anthropic, OpenRouter via AI SDK provider adapters
+- Full wizard flow working end-to-end with streaming generation
+
+**User Feedback Incorporated:**
+- Custom language input (not limited to dropdown options)
+- Custom domain areas (beyond 6 predefined)
 
 ## Constraints
 
@@ -66,13 +67,15 @@ Anyone can create a distinct, well-crafted agent personality without writing a s
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| Next.js on Vercel | Free hosting, API routes for key proxying, good DX | — Pending |
-| User-provided API keys (no backend auth) | Zero cost, no user management overhead | — Pending |
-| Multi-provider (OpenAI, Anthropic, OpenRouter) | Flexibility for community, OpenRouter covers long tail | — Pending |
-| localStorage for persistence | No backend needed, keeps it simple and free | — Pending |
-| i18n (EN/PL) | Creator is Polish, tool is for international OpenClaw community | — Pending |
-| Generated files always English | OpenClaw convention, agents respond in configured language via USER.md | — Pending |
-| Design via frontend-design skill | Avoid generic AI aesthetic, make it distinctive | — Pending |
+| Next.js on Vercel | Free hosting, API routes for key proxying, good DX | Good |
+| User-provided API keys (no backend auth) | Zero cost, no user management overhead | Good |
+| Multi-provider (OpenAI, Anthropic, OpenRouter) | Flexibility for community, OpenRouter covers long tail | Good |
+| localStorage for persistence | No backend needed, keeps it simple and free | Good |
+| AI SDK v6 with streaming | Modern streaming API, works with all providers | Good |
+| Delimiter-based file parsing | Simpler than JSON for streaming, easier to debug | Good |
+| Simple inline markdown parser | Avoids heavy dependency, sufficient for file formats | Good |
+| client-zip for ZIP export | Browser-only, works with dynamic import | Good |
+| Base64 URL sharing | Compact, URL-safe, no server needed | Good |
 
 ---
-*Last updated: 2026-02-05 after initialization*
+*Last updated: 2026-02-06 after v1.0 milestone*

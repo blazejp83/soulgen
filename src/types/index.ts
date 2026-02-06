@@ -119,3 +119,15 @@ export interface GeneratedFiles {
   identity: string; // IDENTITY.md content
   user: string;     // USER.md content
 }
+
+// ─── File History (Undo/Redo) ────────────────────────────────────
+
+export interface FileHistory {
+  past: string[];
+  present: string;
+  future: string[];
+}
+
+// ─── Preview Mode ────────────────────────────────────────────────
+
+export type PreviewMode = "rendered" | "raw" | "edit";

@@ -7,6 +7,8 @@ import { RefreshCw, Check, Loader2, Settings, AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { GeneratedFiles } from "@/types";
 import type { ActiveFile } from "@/hooks/use-generation";
+import { useFileHistory } from "@/hooks/use-file-history";
+import { FilePreview } from "@/components/file-preview";
 import Link from "next/link";
 
 // ─── Types ───────────────────────────────────────────────────────
@@ -109,15 +111,39 @@ function ErrorDisplay({
   );
 }
 
-// ─── File Content Tab ────────────────────────────────────────────
+// ─── File Tab with History ───────────────────────────────────────
 
-function FileContentTab({ content, filename }: { content: string; filename: string }) {
+interface FileTabProps {
+  filename: string;
+  originalContent: string;
+}
+
+function FileTabContent({ filename, originalContent }: FileTabProps) {
+  const {
+    content,
+    setContent,
+    undo,
+    redo,
+    canUndo,
+    canRedo,
+    reset,
+  } = useFileHistory(originalContent);
+
+  // Reset history when original content changes (e.g., after regeneration)
+  useEffect(() => {
+    reset(originalContent);
+  }, [originalContent, reset]);
+
   return (
-    <div>
-      <pre className="max-h-96 overflow-auto rounded-lg border border-border bg-muted/50 p-4 text-xs text-foreground font-mono whitespace-pre-wrap">
-        {content || <span className="text-muted-foreground italic">No content generated</span>}
-      </pre>
-    </div>
+    <FilePreview
+      filename={filename}
+      content={content}
+      onChange={setContent}
+      canUndo={canUndo}
+      canRedo={canRedo}
+      onUndo={undo}
+      onRedo={redo}
+    />
   );
 }
 
@@ -205,13 +231,13 @@ export function GenerationView({
             <TabsTrigger value="user">USER.md</TabsTrigger>
           </TabsList>
           <TabsContent value="soul" className="mt-3">
-            <FileContentTab content={files.soul} filename="SOUL.md" />
+            <FileTabContent filename="SOUL.md" originalContent={files.soul} />
           </TabsContent>
           <TabsContent value="identity" className="mt-3">
-            <FileContentTab content={files.identity} filename="IDENTITY.md" />
+            <FileTabContent filename="IDENTITY.md" originalContent={files.identity} />
           </TabsContent>
           <TabsContent value="user" className="mt-3">
-            <FileContentTab content={files.user} filename="USER.md" />
+            <FileTabContent filename="USER.md" originalContent={files.user} />
           </TabsContent>
         </Tabs>
 

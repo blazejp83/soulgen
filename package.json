@@ -12,6 +12,7 @@
     "@ai-sdk/anthropic": "^3.0.36",
     "@ai-sdk/openai": "^3.0.25",
     "@openrouter/ai-sdk-provider": "^2.1.1",
+    "@radix-ui/react-dialog": "^1.1.15",
     "ai": "^6.0.71",
     "class-variance-authority": "^0.7.1",
     "client-zip": "^2.5.0",

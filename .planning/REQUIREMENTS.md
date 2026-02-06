@@ -13,7 +13,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [ ] **WIZD-02**: User can navigate back to any completed step without losing data
 - [ ] **WIZD-03**: User can navigate forward/backward with Next and Back buttons
 - [ ] **WIZD-04**: User sees a summary/review step showing complete configuration before generation
-- [ ] **WIZD-05**: User can freely edit generated files in an editor before downloading
+- [x] **WIZD-05**: User can freely edit generated files in an editor before downloading
 
 ### Archetype Selection
 
@@ -75,17 +75,17 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### File Preview & Editing
 
-- [ ] **PREV-01**: User sees generated files in a tabbed view (SOUL.md | IDENTITY.md | USER.md)
-- [ ] **PREV-02**: User can toggle between rendered markdown and raw edit mode
-- [ ] **PREV-03**: User can edit file contents directly before export
-- [ ] **PREV-04**: User can copy individual file contents to clipboard
-- [ ] **PREV-05**: Session-local version history per file (undo/redo within the session)
+- [x] **PREV-01**: User sees generated files in a tabbed view (SOUL.md | IDENTITY.md | USER.md)
+- [x] **PREV-02**: User can toggle between rendered markdown and raw edit mode
+- [x] **PREV-03**: User can edit file contents directly before export
+- [x] **PREV-04**: User can copy individual file contents to clipboard
+- [x] **PREV-05**: Session-local version history per file (undo/redo within the session)
 
 ### Export
 
-- [ ] **EXPO-01**: User can download all generated files as a ZIP
-- [ ] **EXPO-02**: User can copy individual files to clipboard
-- [ ] **EXPO-03**: Exported files follow naming convention (SOUL.md, IDENTITY.md, USER.md)
+- [x] **EXPO-01**: User can download all generated files as a ZIP
+- [x] **EXPO-02**: User can copy individual files to clipboard
+- [x] **EXPO-03**: Exported files follow naming convention (SOUL.md, IDENTITY.md, USER.md)
 
 ### API Key Management
 
@@ -98,11 +98,11 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [ ] **PERS-01**: Wizard state auto-saves to localStorage on every step change
 - [ ] **PERS-02**: Wizard state restores on page load (resume where user left off)
-- [ ] **PERS-03**: User can save multiple agent profiles to localStorage
-- [ ] **PERS-04**: User can load a previously saved agent profile
-- [ ] **PERS-05**: User can import DNA configuration from JSON paste or file upload
-- [ ] **PERS-06**: User can share agent configuration via URL (base64-encoded DNA in query params)
-- [ ] **PERS-07**: User can load a shared configuration from a URL
+- [x] **PERS-03**: User can save multiple agent profiles to localStorage
+- [x] **PERS-04**: User can load a previously saved agent profile
+- [x] **PERS-05**: User can import DNA configuration from JSON paste or file upload
+- [x] **PERS-06**: User can share agent configuration via URL (base64-encoded DNA in query params)
+- [x] **PERS-07**: User can load a shared configuration from a URL
 
 ### Mode Toggle
 
@@ -216,26 +216,27 @@ Which phases cover which requirements. Updated by create-roadmap.
 | GENR-01 | Phase 3 | Complete |
 | GENR-02 | Phase 3 | Complete |
 | GENR-03 | Phase 3 | Complete |
-| WIZD-05 | Phase 4 | Pending |
-| PREV-01 | Phase 4 | Pending |
-| PREV-02 | Phase 4 | Pending |
-| PREV-03 | Phase 4 | Pending |
-| PREV-04 | Phase 4 | Pending |
-| PREV-05 | Phase 4 | Pending |
-| EXPO-01 | Phase 4 | Pending |
-| EXPO-02 | Phase 4 | Pending |
-| EXPO-03 | Phase 4 | Pending |
-| PERS-03 | Phase 4 | Pending |
-| PERS-04 | Phase 4 | Pending |
-| PERS-05 | Phase 4 | Pending |
-| PERS-06 | Phase 4 | Pending |
-| PERS-07 | Phase 4 | Pending |
+| WIZD-05 | Phase 4 | Complete |
+| PREV-01 | Phase 4 | Complete |
+| PREV-02 | Phase 4 | Complete |
+| PREV-03 | Phase 4 | Complete |
+| PREV-04 | Phase 4 | Complete |
+| PREV-05 | Phase 4 | Complete |
+| EXPO-01 | Phase 4 | Complete |
+| EXPO-02 | Phase 4 | Complete |
+| EXPO-03 | Phase 4 | Complete |
+| PERS-03 | Phase 4 | Complete |
+| PERS-04 | Phase 4 | Complete |
+| PERS-05 | Phase 4 | Complete |
+| PERS-06 | Phase 4 | Complete |
+| PERS-07 | Phase 4 | Complete |
 
 **Coverage:**
 - v1 requirements: 62 total
 - Mapped to phases: 62
 - Unmapped: 0 ✓
+- Complete: 62 ✓
 
 ---
 *Requirements defined: 2026-02-05*
-*Last updated: 2026-02-05 after Phase 3 execution*
+*Last updated: 2026-02-06 after Phase 4 execution*

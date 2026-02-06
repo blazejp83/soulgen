@@ -13,7 +13,7 @@ None
 - [x] **Phase 1: Foundation** - Project scaffold, state management, API route with streaming LLM proxy, provider abstraction, mode toggle
 - [x] **Phase 2: Wizard UI + DNA Engine** - All wizard steps (archetype → temperament → communication → work style → user relationship → domains → summary)
 - [x] **Phase 3: LLM Generation Pipeline** - Prompt builder, streaming generation, response parsing, multi-provider output handling
-- [ ] **Phase 4: Preview, Export & Persistence** - Tabbed file preview, markdown editing, ZIP export, profile management, URL sharing
+- [x] **Phase 4: Preview, Export & Persistence** - Tabbed file preview, markdown editing, ZIP export, profile management, URL sharing
 
 ## Phase Details
 
@@ -61,7 +61,7 @@ Plans:
 
 Plans:
 - [x] 04-01: Tabbed file preview + markdown rendering + edit mode + version history
-- [ ] 04-02: ZIP export + clipboard copy + profile save/load + JSON import + URL sharing
+- [x] 04-02: ZIP export + clipboard copy + profile save/load + JSON import + URL sharing
 
 ## Progress
 
@@ -73,4 +73,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | 1. Foundation | 2/2 | Complete | 2026-02-05 |
 | 2. Wizard UI + DNA Engine | 3/3 | Complete | 2026-02-05 |
 | 3. LLM Generation Pipeline | 1/1 | ✅ Complete | 2026-02-05 |
-| 4. Preview, Export & Persistence | 1/2 | In progress | - |
+| 4. Preview, Export & Persistence | 2/2 | ✅ Complete | 2026-02-06 |

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import { Toaster } from "@/components/ui/sonner";
 import { AppHeader } from "@/components/app-header";
 import "./globals.css";
@@ -25,6 +26,7 @@ export default function RootLayout({
         <AppHeader />
         <main className="min-h-[calc(100vh-3.5rem)]">{children}</main>
         <Toaster />
+        <Analytics />
       </body>
     </html>
   );

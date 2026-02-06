@@ -213,9 +213,9 @@ Which phases cover which requirements. Updated by create-roadmap.
 | DOMN-01 | Phase 2 | Complete |
 | DOMN-02 | Phase 2 | Complete |
 | DOMN-03 | Phase 2 | Complete |
-| GENR-01 | Phase 3 | Pending |
-| GENR-02 | Phase 3 | Pending |
-| GENR-03 | Phase 3 | Pending |
+| GENR-01 | Phase 3 | Complete |
+| GENR-02 | Phase 3 | Complete |
+| GENR-03 | Phase 3 | Complete |
 | WIZD-05 | Phase 4 | Pending |
 | PREV-01 | Phase 4 | Pending |
 | PREV-02 | Phase 4 | Pending |
@@ -238,4 +238,4 @@ Which phases cover which requirements. Updated by create-roadmap.
 
 ---
 *Requirements defined: 2026-02-05*
-*Last updated: 2026-02-05 after Phase 2 execution*
+*Last updated: 2026-02-05 after Phase 3 execution*

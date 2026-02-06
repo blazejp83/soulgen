@@ -72,5 +72,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/2 | Complete | 2026-02-05 |
 | 2. Wizard UI + DNA Engine | 3/3 | Complete | 2026-02-05 |
-| 3. LLM Generation Pipeline | 1/1 | Complete | 2026-02-05 |
+| 3. LLM Generation Pipeline | 1/1 | ✅ Complete | 2026-02-05 |
 | 4. Preview, Export & Persistence | 0/2 | Not started | - |

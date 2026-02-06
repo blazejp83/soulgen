@@ -32,7 +32,8 @@ const FILE_PATTERNS: { key: FileKey; pattern: RegExp }[] = [
  */
 export class GenerationParser {
   private buffer: string = "";
-  private currentFile: FileKey | null = null;
+  // Default to "soul" since LLM often starts without explicit delimiter
+  private currentFile: FileKey = "soul";
   private files: GeneratedFiles = { soul: "", identity: "", user: "" };
 
   /**
@@ -62,7 +63,7 @@ export class GenerationParser {
   /**
    * Get which file is currently being streamed.
    */
-  getCurrentFile(): FileKey | null {
+  getCurrentFile(): FileKey {
     return this.currentFile;
   }
 
@@ -71,7 +72,7 @@ export class GenerationParser {
    */
   reset(): void {
     this.buffer = "";
-    this.currentFile = null;
+    this.currentFile = "soul"; // Default to soul
     this.files = { soul: "", identity: "", user: "" };
   }
 
@@ -106,7 +107,7 @@ export class GenerationParser {
         }
 
         processed = true;
-      } else if (this.currentFile) {
+      } else {
         // No delimiter found - check if we might have a partial delimiter at end
         const partialDelimiter = this.hasPartialDelimiter();
 
@@ -126,11 +127,6 @@ export class GenerationParser {
             processed = true;
           }
         }
-      } else {
-        // No current file yet - look for first delimiter
-        // If no delimiter found, keep accumulating in buffer
-        // This handles preamble text before first file delimiter
-        break;
       }
     }
   }

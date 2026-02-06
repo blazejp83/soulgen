@@ -79,13 +79,16 @@ export type ArchetypeId =
 
 // ─── Domain Tags ──────────────────────────────────────────────────
 
-export type Domain =
+export type PredefinedDomain =
   | "coding"
   | "research"
   | "automation"
   | "writing"
   | "planning"
   | "media";
+
+// Domain can be a predefined option or any custom string
+export type Domain = PredefinedDomain | (string & {});
 
 // ─── Agent DNA ────────────────────────────────────────────────────
 // The complete DNA object accumulated by the wizard

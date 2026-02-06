@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,14 +15,18 @@ import { useMounted } from "@/hooks/use-mounted";
 
 export default function SettingsPage() {
   const mounted = useMounted();
+  const router = useRouter();
 
   return (
     <div className="mx-auto max-w-2xl space-y-6 p-6">
       <div className="flex items-center gap-4">
-        <Button variant="ghost" size="icon" asChild>
-          <Link href="/" aria-label="Back to home">
-            <ArrowLeft className="h-5 w-5" />
-          </Link>
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={() => router.back()}
+          aria-label="Go back"
+        >
+          <ArrowLeft className="h-5 w-5" />
         </Button>
         <h1 className="text-2xl font-bold tracking-tight">Settings</h1>
       </div>

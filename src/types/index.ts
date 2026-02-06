@@ -131,3 +131,13 @@ export interface FileHistory {
 // ─── Preview Mode ────────────────────────────────────────────────
 
 export type PreviewMode = "rendered" | "raw" | "edit";
+
+// ─── Saved Profile ──────────────────────────────────────────────
+
+export interface SavedProfile {
+  id: string;
+  name: string;
+  dna: AgentDNA;
+  createdAt: string;
+  updatedAt: string;
+}
